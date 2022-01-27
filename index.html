@@ -55,7 +55,7 @@
        const lettersI = Array.from(document.querySelectorAll("#letter-i")).map(x => x.textContent);
        const lettersE = Array.from(document.querySelectorAll("#letter-e")).map(x => x.textContent);
 
-       const results = words.filter(x => x.length === 5 && letters.some(l => x.includes(l)) && lettersI.every(l => x.includes(l)) && lettersE.every(l => !x.includes(l)));
+       const results = words.filter(x => x.length === 5 && (letters.some(l => x.includes(l)) || !letters.length) && lettersI.every(l => x.includes(l)) && lettersE.every(l => !x.includes(l)));
 
        const oldResults = document.querySelector("#results");
        if (oldResults) oldResults.remove();
