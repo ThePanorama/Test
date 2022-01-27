@@ -41,9 +41,9 @@
   const eInput = document.querySelector("excludes > input");
   const selectedE = document.querySelector(".selected-e");
   
-  leInput.onkeyup = (key) => addLetter(key, leInput, selectedLe, "letter-le")
-  iInput.onkeyup = (key) => addLetter(key, iInput, selectedI, "letter-i")
-  eInput.onkeyup = (key) => addLetter(key, eInput, selectedE, "letter-e")
+  leInput.oninput = (key) => addLetter(key, leInput, selectedLe, "letter-le")
+  iInput.oninput = (key) => addLetter(key, iInput, selectedI, "letter-i")
+  eInput.oninput = (key) => addLetter(key, eInput, selectedE, "letter-e")
 
   document.querySelector("#search").onclick = () => {
     fetch("https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt")
@@ -70,7 +70,7 @@
   }
   
   function addLetter(key, input, selected, id) {
-    if (key.code === "Space" && input.value.trim()) {
+    if (key.data?.charCodeAt(0) === 32 && input.value.trim()) {
       for (const letter of input.value.trim().split(" ")) {
         const newLetter = document.createElement("li");
         newLetter.onclick = () => newLetter.remove();
@@ -92,7 +92,7 @@
         selected.appendChild(newLetter);
       }
       input.value = "";
-    } else if (key.keyCode === 8 && !input.value) {
+    } else if (key.inputType === "deleteContentBackward" && !input.value) {
       const letterElement = Array.from(document.querySelectorAll(`#${id}`))?.at(-1);
       if (letterElement) letterElement.remove();
     }
