@@ -4,11 +4,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<div class="letters-box flex justify-center">
+<div class="letters-box mt-10 flex justify-center">
   <div class="d-inline-block color-bg-default py-0 position-relative">
     <ul class="selected-le d-inline" />
     <letters>
-      <input type="text" class="text-white uppercase font-sans outline-blue-500 bg-slate-800 d-inline-block p-0 my-1 rounded-md border-0 drop-shadow-lg" autocomplete="off" role="combobox" spellcheck="false">
+      <input type="text" class="text-white uppercase font-sans text-[1.5vw] p-[.5vw] outline-blue-500 bg-slate-800 d-inline-block p-0 my-1 rounded-md border-0 drop-shadow-lg" autocomplete="off" role="combobox" spellcheck="false">
     </letters>
   </div>
 </div>
@@ -16,7 +16,7 @@
   <div class="d-inline-block color-bg-default py-0 position-relative">
     <ul class="selected-i d-inline" />
     <includes>
-      <input type="text" class="text-white uppercase font-sans outline-blue-500 bg-slate-800 d-inline-block p-0 my-1 rounded-md border-0 drop-shadow-lg" autocomplete="off" role="combobox" spellcheck="false">
+      <input type="text" class="text-white uppercase font-sans text-[1.5vw] p-[.5vw] outline-blue-500 bg-slate-800 d-inline-block p-0 my-1 rounded-md border-0 drop-shadow-lg" autocomplete="off" role="combobox" spellcheck="false">
     </includes>
   </div>
 </div>
@@ -24,12 +24,12 @@
   <div class="d-inline-block color-bg-default py-0 position-relative">
     <ul class="selected-e d-inline" />
     <excludes>
-      <input type="text" class="text-white uppercase font-sans outline-blue-500 bg-slate-800 d-inline-block p-0 my-1 rounded-md border-0 drop-shadow-lg" autocomplete="off" role="combobox" spellcheck="false">
+      <input type="text" class="text-white uppercase font-sans text-[1.5vw] p-[.5vw] outline-blue-500 bg-slate-800 d-inline-block p-0 my-1 rounded-md border-0 drop-shadow-lg" autocomplete="off" role="combobox" spellcheck="false">
     </excludes>
   </div>
 </div>
 <div class="search-box flex justify-center">
-  <button id="search" class="text-white font-sans px-2 rounded-md mt-5 bg-blue-500 hover:bg-blue-800">Search</button>
+  <button id="search" class="text-white text-[1.5vw] p-[.5vw] font-sans px-2 rounded-md mt-5 bg-blue-500 hover:bg-blue-800">Search</button>
 </div>
 <div class="results-box flex justify-center">
 </div>
@@ -78,6 +78,7 @@
         newLetter.innerText = letter;
         newLetter.className = `
           select-none font-sans text-center text-white uppercase
+          text-[1.5vw] p-[.5vw]
           
           drop-shadow-lg
           
