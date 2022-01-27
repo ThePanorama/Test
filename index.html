@@ -4,6 +4,14 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
+<div class="letters-box flex justify-center">
+  <div class="d-inline-block color-bg-default py-0 position-relative">
+    <ul class="selected-le d-inline" />
+    <letters>
+      <input type="text" class="text-white uppercase font-sans outline-blue-500 bg-slate-800 d-inline-block p-0 my-1 rounded-md border-0 drop-shadow-lg" autocomplete="off" role="combobox" spellcheck="false">
+    </letters>
+  </div>
+</div>
 <div class="includes-box flex justify-center">
   <div class="d-inline-block color-bg-default py-0 position-relative">
     <ul class="selected-i d-inline" />
@@ -12,7 +20,7 @@
     </includes>
   </div>
 </div>
-<div class="letters-box flex justify-center">
+<div class="excludes-box flex justify-center">
   <div class="d-inline-block color-bg-default py-0 position-relative">
     <ul class="selected-e d-inline" />
     <excludes>
@@ -26,11 +34,14 @@
 <div class="results-box flex justify-center">
 </div>
 <script>
+  const leInput = document.querySelector("letters > input");
+  const selectedLe = document.querySelector(".selected-le");
   const iInput = document.querySelector("includes > input");
   const selectedI = document.querySelector(".selected-i");
   const eInput = document.querySelector("excludes > input");
   const selectedE = document.querySelector(".selected-e");
   
+  leInput.onkeyup = (key) => addLetter(key, leInput, selectedLe, "letter-le")
   iInput.onkeyup = (key) => addLetter(key, iInput, selectedI, "letter-i")
   eInput.onkeyup = (key) => addLetter(key, eInput, selectedE, "letter-e")
 
@@ -40,22 +51,21 @@
       .then(words => {
         words = words.split("\n").map(x => x.trim());
       
-        const lettersI = Array.from(document.querySelectorAll("#letter-i")).map(x => x.textContent);
-        const lettersE = Array.from(document.querySelectorAll("#letter-e")).map(x => x.textContent);
-      
-        console.log(lettersI)
-      
-       const results = words.filter(x => x.length === 5 && lettersI.every(l => x.includes(l)) && lettersE.every(l => !x.includes(l)));
-      
-      const oldResults = document.querySelector("#results");
-      if (oldResults) oldResults.remove();
-      
-      const newResults = document.createElement("div");
-      
-      newResults.id = "results";
-      newResults.innerText = results.join("\n");
-      
-      document.querySelector(".results-box").appendChild(newResults);
+       const letters = Array.from(document.querySelectorAll("#letter-le")).map(x => x.textContent);
+       const lettersI = Array.from(document.querySelectorAll("#letter-i")).map(x => x.textContent);
+       const lettersE = Array.from(document.querySelectorAll("#letter-e")).map(x => x.textContent);
+
+       const results = words.filter(x => x.length === 5 && letters.some(l => x.includes(l)) && lettersI.every(l => x.includes(l)) && lettersE.every(l => !x.includes(l)));
+
+       const oldResults = document.querySelector("#results");
+       if (oldResults) oldResults.remove();
+
+       const newResults = document.createElement("div");
+
+       newResults.id = "results";
+       newResults.innerText = results.join("\n");
+
+       document.querySelector(".results-box").appendChild(newResults);
     });
   }
   
