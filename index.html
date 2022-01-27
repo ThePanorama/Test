@@ -70,7 +70,7 @@
   }
   
   function addLetter(key, input, selected, id) {
-    if (key.data?.charCodeAt(0) === 32 && input.value.trim()) {
+    if (key.data?.charCodeAt(key.data?.length - 1) === 32 && input.value.trim()) {
       for (const letter of input.value.trim().split(" ")) {
         const newLetter = document.createElement("li");
         newLetter.onclick = () => newLetter.remove();
